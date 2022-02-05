@@ -1,1 +1,1 @@
-# log-analyzer-cli
+# ⏲ Log analyzer CLI for Heroku, AWS, etc.
