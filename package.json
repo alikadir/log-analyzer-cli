@@ -1,0 +1,26 @@
+{
+  "name": "log-analyzer-cli",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "cli.js",
+  "scripts": {
+    "start": "node cli.js",
+    "link": "sudo npm link"
+  },
+  "bin": {
+    "log-analyzer": "cli.js"
+  },
+  "keywords": [],
+  "author": "Ali K. Bagcioglu",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.0.0",
+    "enquirer": "^2.3.6",
+    "node-fetch": "^3.2.0",
+    "ora": "^6.0.1"
+  },
+  "devDependencies": {
+    "standard": "*"
+  }
+}
