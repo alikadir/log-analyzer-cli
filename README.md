@@ -8,7 +8,7 @@ TODO: add description
 
 ```bash 
 brew tap alikadir/log-analyzer-cli
-brew install log-analyzer-cli
+brew install log-analyzer
 ```
 
 ### Npm (cross-platform)
