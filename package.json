@@ -5,8 +5,6 @@
   "type": "module",
   "scripts": {
     "start": "node cli.js",
-    "link": "sudo npm link",
-    "publish": "npm adduser && npm publish"
   },
   "bin": {
     "log-analyzer": "cli.js"
