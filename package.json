@@ -6,16 +6,24 @@
   "scripts": {
     "start": "node cli.js",
     "link": "sudo npm link",
-    "publish": ""
+    "publish": "npm adduser && npm publish"
   },
   "bin": {
     "log-analyzer": "cli.js"
   },
-  "keywords": [],
+  "keywords": [
+    "Heroku",
+    "AWS",
+    "Logs",
+    "Analyzer",
+    "Mean",
+    "Median"
+  ],
   "author": "Ali K. Bagcioglu",
   "license": "ISC",
   "dependencies": {
     "chalk": "^5.0.0",
+
     "enquirer": "^2.3.6",
     "node-fetch": "^3.2.0",
     "ora": "^6.0.1"
