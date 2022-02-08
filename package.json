@@ -1,6 +1,6 @@
 {
   "name": "log-analyzer-cli",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "⏲ Log analyzer CLI for Heroku, AWS, etc.",
   "type": "module",
   "scripts": {
