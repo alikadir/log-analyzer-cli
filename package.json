@@ -1,12 +1,12 @@
 {
   "name": "log-analyzer-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "type": "module",
-  "main": "cli.js",
   "scripts": {
     "start": "node cli.js",
-    "link": "sudo npm link"
+    "link": "sudo npm link",
+    "publish": ""
   },
   "bin": {
     "log-analyzer": "cli.js"
@@ -22,5 +22,7 @@
   },
   "devDependencies": {
     "standard": "*"
-  }
+  },
+  "repository": "https://github.com/alikadir/log-analyzer-cli",
+  "homepage": "https://github.com/alikadir/log-analyzer-cli#readme"
 }

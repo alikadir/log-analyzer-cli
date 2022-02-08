@@ -43,8 +43,8 @@ const navigate = async () => {
 const getUrl = async (type) => {
   const source = await selectSource()
 
-  if (type === 'herokuRouterLog' && source === 'large') { return 'https://raw.githubusercontent.com/alikadir/log-analyzer-cli/main/assets/logs/herokuRouter/sample.log' }
-  if (type === 'herokuRouterLog' && source === 'small') { return 'https://raw.githubusercontent.com/alikadir/log-analyzer-cli/main/assets/logs/herokuRouter/sample.small.log' }
+  if (type === 'herokuRouterLog' && source === 'large') { return 'https://raw.githubusercontent.com/alikadir/log-analyzer-cli/main/assets/logs/herokuRouterLogs/sample.log' }
+  if (type === 'herokuRouterLog' && source === 'small') { return 'https://raw.githubusercontent.com/alikadir/log-analyzer-cli/main/assets/logs/herokuRouterLogs/sample.small.log' }
   if (type === 'herokuRouterLog' && source === 'url') { return getCustomUrl() }
 }
 
