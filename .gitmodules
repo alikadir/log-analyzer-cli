@@ -1,0 +1,3 @@
+[submodule "homebrew-log-analyzer-cli"]
+	path = homebrew-log-analyzer-cli
+	url = https://github.com/alikadir/homebrew-log-analyzer-cli
