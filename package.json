@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "start": "node cli.js",
-    "npm:publish": "npm publish",
     "brew:local:install": "brew install --build-from-source Formula/log-analyzer.rb",
-    "brew:local:uninstall":"brew uninstall log-analyzer"
+    "brew:local:uninstall": "brew uninstall log-analyzer",
+    "npm:version:increase": "npm version patch",
+    "npm:publish": "npm publish"
   },
   "bin": {
     "log-analyzer": "cli.js"
