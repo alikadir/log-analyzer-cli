@@ -1,6 +1,6 @@
 {
   "name": "log-analyzer-cli",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "⏲ Log analyzer CLI for Heroku, AWS, etc.",
   "type": "module",
   "scripts": {
@@ -25,7 +25,6 @@
   "license": "ISC",
   "dependencies": {
     "chalk": "^5.0.0",
-
     "enquirer": "^2.3.6",
     "node-fetch": "^3.2.0",
     "ora": "^6.0.1"
