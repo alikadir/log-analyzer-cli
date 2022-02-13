@@ -23,6 +23,6 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.NPM_ACCESS_TOKEN}}
           
   publish-homebrew:
-    runs-on: ubuntu@latest
+    runs-on: ubuntu-latest
     steps:
       - run: echo "homebrew formula update for ${GITHUB_REF#refs/*/}"
