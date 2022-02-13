@@ -6,25 +6,11 @@ name: New Version Release
 on:
   push:
     tags: 
-      - '**'
+      - 'v**'
 
 jobs:
-  apply-version-number-to-code:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16
-      - run: npm version ${GITHUB_REF#refs/*/} --no-git-tag-version
-      - run: git add .
-      - run: git commit -m"upgrade version number ${GITHUB_REF#refs/*/}"
-      - run: git push origin/main
-  
-
   publish-npm:
     runs-on: ubuntu-latest
-    needs: [apply-version-number-to-code]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
