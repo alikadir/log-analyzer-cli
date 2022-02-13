@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16
-      - run: npm version ${GITHUB_REF#refs/*/}
+      - run: npm version ${GITHUB_REF#refs/*/} --no-git-tag-version
       - run: git add .
       - run: git commit -m"upgrade version number ${GITHUB_REF#refs/*/}"
       - run: git push origin/main
