@@ -13,8 +13,7 @@ const greetings = () => {
 /_____/\\____/\\__, /    /_/  |_/_/ /_/\\__,_/_/\\__, / /___/\\___/_/     
             /____/                          /____/                   
 
-${chalk.green('Log Analyzer CLI')}
-`))
+${chalk.green('Log Analyzer CLI')} ${chalk.yellow('v'+process.env.npm_package_version)}`))
 }
 
 export default async function MainRoute () {
