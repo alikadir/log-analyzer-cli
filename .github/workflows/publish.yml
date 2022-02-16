@@ -81,15 +81,9 @@ jobs:
     needs: [create-variables, update-homebrew-formula]
     steps:
       - uses: actions/checkout@v2
-        with:
-          repository: alikadir/log-analyzer-cli
-          token: ${{ secrets.FULL_ACCESS_GITHUB_TOKEN }}
           
       - run: git submodule update --init --remote
-      
-      - run: git config user.email "${{env.GIT_USER_EMAIL}}"
-      - run: git config user.name "${{env.GIT_USER_NAME}}"
-      
+
       - run: git add .
       - run: git status
       - run: git commit -m "update submodule for ${{needs.variables.outputs.TAG}}"
