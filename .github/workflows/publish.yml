@@ -65,15 +65,15 @@ jobs:
            repository: alikadir/homebrew-log-analyzer-cli
            token: ${{ secrets.FULL_ACCESS_GITHUB_TOKEN }}
            
-       - run: sed -i 's|url.*|url "'${{needs.variables.outputs.PACKAGE_URL}}'"|' Formula/log-analyzer.rb
-       - run: sed -i 's|sha256.*|sha256 "'${{needs.variables.outputs.PACKAGE_SHA256}}'"|' Formula/log-analyzer.rb
+       - run: sed -i 's|url.*|url "'${{needs.create-variables.outputs.PACKAGE_URL}}'"|' Formula/log-analyzer.rb
+       - run: sed -i 's|sha256.*|sha256 "'${{needs.create-variables.outputs.PACKAGE_SHA256}}'"|' Formula/log-analyzer.rb
        
        - run: git config user.email "${{env.GIT_USER_EMAIL}}"
        - run: git config user.name "${{env.GIT_USER_NAME}}"
        
        - run: git add .
        - run: git status
-       - run: git commit -m "update version ${{needs.variables.outputs.TAG}}"
+       - run: git commit -m "update version ${{needs.create-variables.outputs.TAG}}"
        - run: git status
        - run: git push origin main  
 
@@ -91,6 +91,6 @@ jobs:
 
       - run: git add .
       - run: git status
-      - run: git commit -m "update submodule for ${{needs.variables.outputs.TAG}}"
+      - run: git commit -m "update submodule for ${{needs.create-variables.outputs.TAG}}"
       - run: git status
       - run: git push origin main  
