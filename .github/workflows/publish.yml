@@ -8,8 +8,13 @@ on:
     tags: 
       - 'v**'
 
+env:
+  GIT_USER_NAME: "Ali K. Bagcioglu"
+  GIT_USER_EMAIL: "alikadirbagcioglu@gmail.com"
+
 jobs:
-  publish-npm:
+
+  publish-to-npm:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,7 +27,71 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_ACCESS_TOKEN}}
           
-  publish-homebrew:
+
+  variables:
     runs-on: ubuntu-latest
+    needs: [publish-to-npm]
+    outputs:
+      TEST: ${{ steps.repo.outputs.test }}
+      SOURCE_NAME: ${{ steps.repo.outputs.SOURCE_NAME }}
+      BRANCH: ${{ steps.repo.outputs.BRANCH }}
+      TAG: ${{ steps.repo.outputs.TAG }}
+      TAG_WITHOUT_V: ${{ steps.repo.outputs.TAG_WITHOUT_V }}
+      PACKAGE_URL: ${{ steps.package.outputs.PACKAGE_URL }}
+      PACKAGE_SHA256: ${{ steps.shasum.outputs.PACKAGE_SHA256 }}
     steps:
-      - run: echo "homebrew formula update for ${GITHUB_REF#refs/*/}"
+      - id: repo
+        run: |
+          echo "::set-output name=test::hello"
+          echo "::set-output name=SOURCE_NAME::${GITHUB_REF#refs/*/}"
+          echo "::set-output name=BRANCH::${GITHUB_REF#refs/heads/}"
+          echo "::set-output name=TAG::${GITHUB_REF#refs/tags/}"
+          echo "::set-output name=TAG_WITHOUT_V::$(sed 's|v||' <<< ${GITHUB_REF#refs/*/})"
+      - id: package
+        run: |
+          echo "::set-output name=PACKAGE_URL::https://registry.npmjs.org/log-analyzer-cli/-/log-analyzer-cli-${{steps.repo.outputs.TAG_WITHOUT_V}}.tgz"
+      - id: shasum
+        run: |
+          curl -L ${{steps.package.outputs.PACKAGE_URL}} --output ${{steps.repo.outputs.TAG}}.tar.gz
+          echo "::set-output name=PACKAGE_SHA256::$(sha256sum ${{steps.repo.outputs.TAG}}.tar.gz | cut -d ' ' -f 1)"
+
+
+  homebrew-formula-update:
+      runs-on: ubuntu-latest
+      needs: [variables]
+      steps:
+       - uses: actions/checkout@v2
+         with: 
+           repository: alikadir/homebrew-log-analyzer-cli
+           token: ${{ secrets.FULL_ACCESS_GITHUB_TOKEN }}
+           
+       - run: sed -i 's|url.*|url "'${{needs.variables.outputs.PACKAGE_URL}}'"|' Formula/log-analyzer.rb
+       - run: sed -i 's|sha256.*|sha256 "'${{needs.variables.outputs.PACKAGE_SHA256}}'"|' Formula/log-analyzer.rb
+       
+       - run: git config user.email ${{env.GIT_USER_EMAIL}}
+       - run: git config user.name ${{env.GIT_USER_NAME}}
+       
+       - run: git add .
+       - run: git commit -m "update version ${{needs.variables.outputs.TAG}}"
+       - run: git push origin main  
+
+
+  update-submodule:
+    runs-on: ubuntu-latest
+    needs: [variables, homebrew-formula-update]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: alikadir/log-analyzer-cli
+          token: ${{ secrets.FULL_ACCESS_GITHUB_TOKEN }}
+          
+      - run: git submodule update --init --remote
+      
+      - run: git config user.email ${{env.GIT_USER_EMAIL}}
+      - run: git config user.name ${{env.GIT_USER_NAME}}
+      
+      - run: git add .
+      - run: git status
+      - run: git commit -m "update submodule for ${{needs.variables.outputs.TAG}}"
+      - run: git status
+      - run: git push origin main  
