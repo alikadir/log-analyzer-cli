@@ -68,8 +68,8 @@ jobs:
        - run: sed -i 's|url.*|url "'${{needs.variables.outputs.PACKAGE_URL}}'"|' Formula/log-analyzer.rb
        - run: sed -i 's|sha256.*|sha256 "'${{needs.variables.outputs.PACKAGE_SHA256}}'"|' Formula/log-analyzer.rb
        
-       - run: git config --global user.email ${{env.GIT_USER_EMAIL}}
-       - run: git config --global user.name ${{env.GIT_USER_NAME}}
+       - run: git config user.email "${{env.GIT_USER_EMAIL}}"
+       - run: git config user.name "${{env.GIT_USER_NAME}}"
        
        - run: git add .
        - run: git commit -m "update version ${{needs.variables.outputs.TAG}}"
@@ -87,8 +87,8 @@ jobs:
           
       - run: git submodule update --init --remote
       
-      - run: git config --global user.email ${{env.GIT_USER_EMAIL}}
-      - run: git config --global user.name ${{env.GIT_USER_NAME}}
+      - run: git config user.email "${{env.GIT_USER_EMAIL}}"
+      - run: git config user.name "${{env.GIT_USER_NAME}}"
       
       - run: git add .
       - run: git status
