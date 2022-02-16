@@ -28,7 +28,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.NPM_ACCESS_TOKEN}}
           
 
-  variables:
+  create-variables:
     runs-on: ubuntu-latest
     needs: [publish-to-npm]
     outputs:
@@ -56,9 +56,9 @@ jobs:
           echo "::set-output name=PACKAGE_SHA256::$(sha256sum ${{steps.repo.outputs.TAG}}.tar.gz | cut -d ' ' -f 1)"
 
 
-  homebrew-formula-update:
+  update-homebrew-formula:
       runs-on: ubuntu-latest
-      needs: [variables]
+      needs: [create-variables]
       steps:
        - uses: actions/checkout@v2
          with: 
@@ -68,8 +68,8 @@ jobs:
        - run: sed -i 's|url.*|url "'${{needs.variables.outputs.PACKAGE_URL}}'"|' Formula/log-analyzer.rb
        - run: sed -i 's|sha256.*|sha256 "'${{needs.variables.outputs.PACKAGE_SHA256}}'"|' Formula/log-analyzer.rb
        
-       - run: git config user.email ${{env.GIT_USER_EMAIL}}
-       - run: git config user.name ${{env.GIT_USER_NAME}}
+       - run: git config --global user.email ${{env.GIT_USER_EMAIL}}
+       - run: git config --global user.name ${{env.GIT_USER_NAME}}
        
        - run: git add .
        - run: git commit -m "update version ${{needs.variables.outputs.TAG}}"
@@ -78,7 +78,7 @@ jobs:
 
   update-submodule:
     runs-on: ubuntu-latest
-    needs: [variables, homebrew-formula-update]
+    needs: [create-variables, update-homebrew-formula]
     steps:
       - uses: actions/checkout@v2
         with:
@@ -87,8 +87,8 @@ jobs:
           
       - run: git submodule update --init --remote
       
-      - run: git config user.email ${{env.GIT_USER_EMAIL}}
-      - run: git config user.name ${{env.GIT_USER_NAME}}
+      - run: git config --global user.email ${{env.GIT_USER_EMAIL}}
+      - run: git config --global user.name ${{env.GIT_USER_NAME}}
       
       - run: git add .
       - run: git status
