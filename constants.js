@@ -1,6 +1,10 @@
+import path from 'path'
+import fs from 'fs'
 import getPackageVersion from '@jsbits/get-package-version'
 
-export const version = getPackageVersion()
+const inputFilePath = process.argv[1]
+export const workingDirectory = path.dirname(fs.realpathSync(inputFilePath))
+export const version = getPackageVersion(workingDirectory)
 export const name = 'Log Analyzer CLI'
 export const logo = `
                         
