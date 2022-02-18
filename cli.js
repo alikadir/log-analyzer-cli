@@ -1,4 +1,5 @@
-#!/usr/bin/env node
+#!/bin/sh
+':' // # comment; exec /usr/bin/env node --experimental-json-modules "$0" "$@"
 
 import mainRoute from './routes/mainRoute.js'
 
