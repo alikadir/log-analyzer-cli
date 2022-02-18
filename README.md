@@ -1,6 +1,8 @@
 # ⏲ Log analyzer CLI for Heroku, AWS, etc.
 
-TODO: add description
+The CLI analyze response time, process time, execution time via mean or median on provided large log files from you
+
+![CLI screen shot](https://raw.githubusercontent.com/alikadir/log-analyzer-cli/main/assets/screenshots/cli-ss.png)
 
 ## Installation 
 
@@ -11,23 +13,28 @@ brew tap alikadir/log-analyzer-cli
 brew install log-analyzer
 ```
 
-### Npm (cross-platform)
+### Npm / Node Package Manager (cross-platform)
 
 ```bash
 npm install -g log-analyzer-cli
 ```
 
+## Update or Remove
 
----
+### Homebrew
+```bash
+brew upgrade log-analyzer
+```
+```bash
+brew remove log-analyzer
+```
 
+### Npm / Node Package Manager (cross-platform)
 
-
-
-**npm global installation path**
-
-```/usr/local/lib/node_modules/...```
-
-**brew installation path**
-
-```/usr/local/Cellar/...```
+```bash
+npm install -g log-analyzer-cli
+```
+```bash
+npm uninstall -g log-analyzer-cli
+```
 
