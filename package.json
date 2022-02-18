@@ -4,7 +4,7 @@
   "description": "⏲ Log analyzer CLI for Heroku, AWS, etc.",
   "type": "module",
   "scripts": {
-    "start": "node --experimental-json-modules cli.js ",
+    "start": "node cli.js ",
     "brew:local:install": "brew install --build-from-source Formula/log-analyzer.rb",
     "brew:local:uninstall": "brew uninstall log-analyzer",
     "npm:version:increase": "npm version patch",

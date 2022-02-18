@@ -1,20 +1,14 @@
 import enquirer from 'enquirer'
 import chalk from 'chalk'
-import pjson from '../package.json'
+
+import { name, version, logo } from '../constants.js'
 
 import herokuRoute from './herokuRoute.js'
 
 const greetings = () => {
-  console.log(chalk.magenta(`
-                        
-    __                     ___                __                     
-   / /   ____  ____ _     /   |  ____  ____ _/ /_  ______  ___  _____
-  / /   / __ \\/ __ \`/    / /| | / __ \\/ __ \`/ / / / /_  / / _ \\/ ___/
- / /___/ /_/ / /_/ /    / ___ |/ / / / /_/ / / /_/ / / /_/  __/ /    
-/_____/\\____/\\__, /    /_/  |_/_/ /_/\\__,_/_/\\__, / /___/\\___/_/     
-            /____/                          /____/                   
-
-${chalk.green('Log Analyzer CLI')} ${chalk.yellow('v' + pjson.version)}`))
+  console.log(chalk.magenta(logo))
+  console.log(chalk.green(name) + ' ' + chalk.yellow(version))
+  console.log('');
 }
 
 export default async function MainRoute () {
