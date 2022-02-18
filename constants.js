@@ -1,7 +1,6 @@
+import getPackageVersion from '@jsbits/get-package-version'
 
-// below line (version) changed by CI/CD tool according to version tag, dont change it
-export const version = 'v0.0.1'
-
+export const version = getPackageVersion()
 export const name = 'Log Analyzer CLI'
 export const logo = `
                         

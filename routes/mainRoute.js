@@ -7,7 +7,7 @@ import herokuRoute from './herokuRoute.js'
 
 const greetings = () => {
   console.log(chalk.magenta(logo))
-  console.log(chalk.green(name) + ' ' + chalk.yellow(version))
+  console.log(chalk.green(name) + ' ' + chalk.yellow('v'+version))
   console.log('');
 }
 

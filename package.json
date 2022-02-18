@@ -24,6 +24,7 @@
   "author": "Ali K. Bagcioglu",
   "license": "ISC",
   "dependencies": {
+    "@jsbits/get-package-version": "^1.0.3",
     "chalk": "^5.0.0",
     "enquirer": "^2.3.6",
     "node-fetch": "^3.2.0",
