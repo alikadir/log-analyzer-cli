@@ -96,4 +96,4 @@ jobs:
       - run: git status
       - run: git commit -m "update submodule for ${{needs.create-variables.outputs.TAG}}"
       - run: git status
-      - run: git push -u origin main  
+      - run: git push 
